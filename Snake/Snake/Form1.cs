@@ -64,7 +64,32 @@ namespace Snake
 
         private void pictureBox1_Paint(object sender, PaintEventArgs e)
         {
+            Graphics canvas = e.Graphics;
 
+            //drawing snake
+            Brush snakeBrush = new SolidBrush(Palette.Blue);
+            canvas.FillEllipse(snakeBrush, new Rectangle(
+                Snake[0].position.X * Settings.CellWidth,
+                Snake[0].position.Y * Settings.CellHeight,
+                Settings.CellWidth, Settings.CellHeight
+                )) ;
+
+            snakeBrush = new SolidBrush(Palette.Green);
+            for (int i = 1; i < Snake.Count; i++)
+            {
+                canvas.FillEllipse(snakeBrush, new Rectangle(
+                Snake[i].position.X * Settings.CellWidth,
+                Snake[i].position.Y * Settings.CellHeight,
+                Settings.CellWidth, Settings.CellHeight
+                ));
+            }
+
+            //drawing food
+            canvas.FillEllipse(new SolidBrush(Palette.Pink), new Rectangle(
+                food.position.X * Settings.CellWidth,
+                food.position.Y * Settings.CellHeight,
+                Settings.CellWidth, Settings.CellHeight
+                ));
         }
 
         private void RestartGame()
@@ -92,7 +117,7 @@ namespace Snake
 
             food = new Circle() { position = new Point(rand.Next(2,maxWidth), rand.Next(2,maxHeight))};
 
-            timer
+            GameTimer.Start();
         }
         private void EatFood()
         {
