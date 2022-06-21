@@ -12,7 +12,7 @@ namespace Snake
 
         public Circle()
         {
-            position = new Point(0,0);
+            position = new Point(2,10);
         }
     }
 }

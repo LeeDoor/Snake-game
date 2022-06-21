@@ -13,5 +13,6 @@ namespace Snake
         public static Color Blue = Color.FromArgb(255, 48, 102, 190);
         public static Color Skin = Color.FromArgb(255, 226, 149, 120);
         public static Color Pink = Color.FromArgb(255, 175, 59, 110);
+        public static Color Black = Color.FromArgb(255, 42, 43, 46);
     }
 }
