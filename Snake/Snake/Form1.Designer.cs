@@ -111,12 +111,17 @@
             this.BestScoreLabel.TabIndex = 2;
             this.BestScoreLabel.Text = "Best Score: 0";
             // 
+            // GameTimer
+            // 
+            this.GameTimer.Interval = 40;
+            this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(699, 698);
+            this.ClientSize = new System.Drawing.Size(700, 699);
             this.Controls.Add(this.BestScoreLabel);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.InfoButton);
@@ -127,6 +132,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "Form1";
             this.Text = "Snake game";
+            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
