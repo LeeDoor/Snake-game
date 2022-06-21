@@ -6,42 +6,13 @@ namespace Snake
 		private Circle food = new Circle();
 		private int maxWidth, maxHeight, score, highScore;
 		private Random rand = new Random();
-		private Direction curDirection;
+		private Direction curDirection = Direction.Down;
 		private bool isStarted = false;
 
 		public Form1()
 		{
 			InitializeComponent();
 		}
-
-		private void Form1_KeyDown(object sender, KeyEventArgs e)
-		{
-			switch (e.KeyCode)
-			{
-				case Keys.Left:
-					if(Settings.direction!=Direction.Right)
-						curDirection = Direction.Left;
-					break;
-				case Keys.Right:
-					if (Settings.direction != Direction.Left)
-						curDirection = Direction.Right;
-					break;
-				case Keys.Up:
-					if (Settings.direction != Direction.Down)
-						curDirection = Direction.Up;
-					break;
-				case Keys.Down:
-					if (Settings.direction != Direction.Up)
-						curDirection = Direction.Down;
-					break;
-			}
-		}
-
-		private void Form1_KeyUp(object sender, KeyEventArgs e)
-		{
-
-		}
-
 		private void StartButton_Click(object sender, EventArgs e)
 		{
 			isStarted = true;
@@ -106,41 +77,61 @@ namespace Snake
 					Settings.direction = Direction.Down;
 					break;
 			}
-
 			for (int i = Snake.Count - 1; i > 0; i--)
 			{
                 Snake[i].position = Snake[i - 1].position;
 			}
+			//Snake.Where(n => n.position == Snake[0].position).Count() == 1
+			Point newHeadPosition = new Point();
 			switch (Settings.direction)
 			{
 				case Direction.Left:
-					Snake[0].position = new Point(Snake[0].position.X-1, Snake[0].position.Y);
+					newHeadPosition = new Point(Snake[0].position.X - 1, Snake[0].position.Y);
 					break;
 				case Direction.Right:
-					Snake[0].position = new Point(Snake[0].position.X + 1, Snake[0].position.Y);
+					newHeadPosition = new Point(Snake[0].position.X + 1, Snake[0].position.Y);
 					break;
 				case Direction.Up:
-					Snake[0].position = new Point(Snake[0].position.X, Snake[0].position.Y + 1);
+					newHeadPosition = new Point(Snake[0].position.X, Snake[0].position.Y - 1);
 					break;
 				case Direction.Down:
-					Snake[0].position = new Point(Snake[0].position.X, Snake[0].position.Y - 1);
+					newHeadPosition = new Point(Snake[0].position.X, Snake[0].position.Y + 1);
 					break;
 			}
-            if (Snake[0].position.X == maxWidth 
+			if (Snake.Where(n => n.position == newHeadPosition).Count() == 1 
+				|| Snake[0].position.X == maxWidth 
 				|| Snake[0].position.X == 0 
 				|| Snake[0].position.Y == maxHeight 
 				|| Snake[0].position.Y == 0)
             {
 				GameOver();
             }
-
+			Snake[0].position = newHeadPosition;
 			pictureBox1.Invalidate();
 		}
 
-        private void Form1_Load_1(object sender, EventArgs e)
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-
-        }
+			switch (e.KeyCode)
+			{
+				case Keys.Left:
+					if (Settings.direction != Direction.Right)
+						curDirection = Direction.Left;
+					break;
+				case Keys.Right:
+					if (Settings.direction != Direction.Left)
+						curDirection = Direction.Right;
+					break;
+				case Keys.Up:
+					if (Settings.direction != Direction.Down)
+						curDirection = Direction.Up;
+					break;
+				case Keys.Down:
+					if (Settings.direction != Direction.Up)
+						curDirection = Direction.Down;
+					break;
+			}
+		}
 
         private void RestartGame()
 		{
@@ -175,6 +166,7 @@ namespace Snake
 		}
 		private void GameOver()
 		{
+			isStarted = false;
 
 		}
 	}

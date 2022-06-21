@@ -43,7 +43,7 @@
             // 
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(196)))), ((int)(((byte)(77)))));
             this.StartButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
-            this.StartButton.Location = new System.Drawing.Point(164, 110);
+            this.StartButton.Location = new System.Drawing.Point(406, 110);
             this.StartButton.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(375, 104);
@@ -118,10 +118,11 @@
             // 
             // Form1
             // 
+            this.KeyPreview = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(700, 699);
+            this.ClientSize = new System.Drawing.Size(796, 757);
             this.Controls.Add(this.BestScoreLabel);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.InfoButton);
@@ -132,9 +133,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "Form1";
             this.Text = "Snake game";
-            this.Load += new System.EventHandler(this.Form1_Load_1);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
-            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
