@@ -19,7 +19,7 @@ namespace Snake
 		}
 		private void RestartGame()
 		{
-			CloseButtons(); // hides menu buttons
+			ChangeButtonStatus(false); // hides menu buttons
 			Field.ResetField(); 
 			ResetScore(); // sets scores 0
 			SetNewFood(); // sets new food
@@ -65,7 +65,7 @@ namespace Snake
 							break;
 					}
 
-					canvas.FillEllipse(brush, new Rectangle(
+					canvas.FillRectangle(brush, new Rectangle(
 					w * Field.CellWidth,
 					h * Field.CellHeight,
 					Field.CellWidth, 
@@ -171,12 +171,13 @@ namespace Snake
 		{
 			isStarted = false;
 			GameTimer.Stop();
+			ChangeButtonStatus(true);
 		}
-		private void CloseButtons()
+		private void ChangeButtonStatus(bool stat)
 		{
-			StartButton.Visible = false;
-			SettingsButton.Visible = false;
-			InfoButton.Visible = false;
+			StartButton.Visible		= stat;
+			SettingsButton.Visible	= stat;
+			InfoButton.Visible		= stat;
 		}
 		private void ResetScore()
         {

@@ -77,7 +77,16 @@ namespace Snake
             }
             else return null;
         }
-
+        public static void ClearField()
+        {
+            for(int i = 0; i < fieldWidth; i++)
+            {
+                for(int j = 0; j < fieldHeight; j++)
+                {
+                    field[i, j] = FieldObjects.Empty;
+                }
+            }
+        }
         
     }
 }
