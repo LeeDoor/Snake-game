@@ -8,11 +8,11 @@ namespace Snake
 {
     public static class Palette
     {
-        public static Color Green = Color.FromArgb(255, 63, 196, 77);
-        public static Color White = Color.FromArgb(255, 241, 247, 238);
-        public static Color Blue = Color.FromArgb(255, 48, 102, 190);
-        public static Color Skin = Color.FromArgb(255, 226, 149, 120);
-        public static Color Pink = Color.FromArgb(255, 175, 59, 110);
-        public static Color Black = Color.FromArgb(255, 42, 43, 46);
+        public static Color Green = Color.FromArgb(255, 63, 196, 77); // snake body
+        public static Color White = Color.FromArgb(255, 241, 247, 238); // background window
+        public static Color Blue = Color.FromArgb(255, 160, 155, 231); // snake head
+        public static Color Skin = Color.FromArgb(255, 236, 185, 167); // field
+        public static Color Pink = Color.FromArgb(255, 205, 91, 131); // food
+        public static Color Black = Color.FromArgb(255, 136, 119, 128); // walls
     }
 }

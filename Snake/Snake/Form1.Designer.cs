@@ -43,7 +43,7 @@
             // 
             this.StartButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(196)))), ((int)(((byte)(77)))));
             this.StartButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
-            this.StartButton.Location = new System.Drawing.Point(406, 110);
+            this.StartButton.Location = new System.Drawing.Point(164, 110);
             this.StartButton.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.StartButton.Name = "StartButton";
             this.StartButton.Size = new System.Drawing.Size(375, 104);
@@ -81,7 +81,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(149)))), ((int)(((byte)(120)))));
+            this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Location = new System.Drawing.Point(0, -1);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(700, 700);
@@ -118,11 +118,10 @@
             // 
             // Form1
             // 
-            this.KeyPreview = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
-            this.ClientSize = new System.Drawing.Size(796, 757);
+            this.ClientSize = new System.Drawing.Size(700, 701);
             this.Controls.Add(this.BestScoreLabel);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.InfoButton);
@@ -130,6 +129,7 @@
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.pictureBox1);
             this.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.KeyPreview = true;
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "Form1";
             this.Text = "Snake game";

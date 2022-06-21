@@ -20,7 +20,7 @@ namespace Snake
 		private void RestartGame()
 		{
 			CloseButtons(); // hides menu buttons
-			Field.ResetField();
+			Field.ResetField(); 
 			ResetScore(); // sets scores 0
 			SetNewFood(); // sets new food
 			CreateSnake(); // creates snake
