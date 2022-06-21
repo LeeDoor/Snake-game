@@ -28,12 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.StartButton = new System.Windows.Forms.Button();
             this.SettingsButton = new System.Windows.Forms.Button();
             this.InfoButton = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.BestScoreLabel = new System.Windows.Forms.Label();
+            this.GameTimer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -141,5 +143,6 @@
         private PictureBox pictureBox1;
         private Label ScoreLabel;
         private Label BestScoreLabel;
+        private System.Windows.Forms.Timer GameTimer;
     }
 }
