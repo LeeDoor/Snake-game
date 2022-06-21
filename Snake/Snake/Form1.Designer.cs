@@ -48,6 +48,7 @@
             this.StartButton.TabIndex = 0;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = false;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // SettingsButton
             // 
@@ -60,6 +61,7 @@
             this.SettingsButton.TabIndex = 0;
             this.SettingsButton.Text = "Settings";
             this.SettingsButton.UseVisualStyleBackColor = false;
+            this.SettingsButton.Click += new System.EventHandler(this.SettingsButton_Click);
             // 
             // InfoButton
             // 
@@ -73,6 +75,7 @@
             this.InfoButton.TabIndex = 0;
             this.InfoButton.Text = "About us";
             this.InfoButton.UseVisualStyleBackColor = false;
+            this.InfoButton.Click += new System.EventHandler(this.InfoButton_Click);
             // 
             // pictureBox1
             // 
@@ -82,6 +85,7 @@
             this.pictureBox1.Size = new System.Drawing.Size(700, 700);
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.Paint += new System.Windows.Forms.PaintEventHandler(this.pictureBox1_Paint);
             // 
             // ScoreLabel
             // 
@@ -121,6 +125,8 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "Form1";
             this.Text = "Snake game";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
