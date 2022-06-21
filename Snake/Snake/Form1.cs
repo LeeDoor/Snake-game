@@ -3,7 +3,7 @@ namespace Snake
 	public partial class Form1 : Form
 	{
 		private List<Circle> Snake = new List<Circle>();
-		private int score, highScore;
+		private int score, highScore = 0;
 		private Random rand = new Random();
 		private Direction curDirection = Direction.Down;
 		private bool isStarted = false;
@@ -172,6 +172,7 @@ namespace Snake
 			isStarted = false;
 			GameTimer.Stop();
 			ChangeButtonStatus(true);
+			ResetHighscore();
 		}
 		private void ChangeButtonStatus(bool stat)
 		{
@@ -183,6 +184,14 @@ namespace Snake
         {
 			score = 0;
 			ScoreLabel.Text = "Score: " + score;
+		}
+		private void ResetHighscore()
+        {
+			if (score > highScore)
+			{
+				highScore = score;
+			}
+			BestScoreLabel.Text = "Best: " + highScore;
 		}
 		private void CreateSnake()
 		{
