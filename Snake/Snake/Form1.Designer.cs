@@ -36,6 +36,7 @@
             this.ScoreLabel = new System.Windows.Forms.Label();
             this.BestScoreLabel = new System.Windows.Forms.Label();
             this.GameTimer = new System.Windows.Forms.Timer(this.components);
+            this.TriesLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             this.ScoreLabel.AutoSize = true;
             this.ScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.ScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(190)))));
-            this.ScoreLabel.Location = new System.Drawing.Point(0, -1);
+            this.ScoreLabel.Location = new System.Drawing.Point(12, 11);
             this.ScoreLabel.Name = "ScoreLabel";
             this.ScoreLabel.Size = new System.Drawing.Size(118, 37);
             this.ScoreLabel.TabIndex = 2;
@@ -105,7 +106,7 @@
             this.BestScoreLabel.AutoSize = true;
             this.BestScoreLabel.BackColor = System.Drawing.Color.Transparent;
             this.BestScoreLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(190)))));
-            this.BestScoreLabel.Location = new System.Drawing.Point(0, 36);
+            this.BestScoreLabel.Location = new System.Drawing.Point(12, 48);
             this.BestScoreLabel.Name = "BestScoreLabel";
             this.BestScoreLabel.Size = new System.Drawing.Size(180, 37);
             this.BestScoreLabel.TabIndex = 2;
@@ -116,12 +117,24 @@
             this.GameTimer.Interval = 40;
             this.GameTimer.Tick += new System.EventHandler(this.GameTimer_Tick);
             // 
+            // TriesLabel
+            // 
+            this.TriesLabel.AutoSize = true;
+            this.TriesLabel.BackColor = System.Drawing.Color.Transparent;
+            this.TriesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(48)))), ((int)(((byte)(102)))), ((int)(((byte)(190)))));
+            this.TriesLabel.Location = new System.Drawing.Point(12, 85);
+            this.TriesLabel.Name = "TriesLabel";
+            this.TriesLabel.Size = new System.Drawing.Size(107, 37);
+            this.TriesLabel.TabIndex = 3;
+            this.TriesLabel.Text = "Tries: 0";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(16F, 37F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(241)))), ((int)(((byte)(247)))), ((int)(((byte)(238)))));
             this.ClientSize = new System.Drawing.Size(700, 701);
+            this.Controls.Add(this.TriesLabel);
             this.Controls.Add(this.BestScoreLabel);
             this.Controls.Add(this.ScoreLabel);
             this.Controls.Add(this.InfoButton);
@@ -133,6 +146,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "Form1";
             this.Text = "Snake game";
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -149,5 +163,6 @@
         private Label ScoreLabel;
         private Label BestScoreLabel;
         private System.Windows.Forms.Timer GameTimer;
+        private Label TriesLabel;
     }
 }

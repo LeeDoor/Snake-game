@@ -1,25 +1,49 @@
 namespace Snake
 {
+	/// <summary>
+	/// стартовое окно. отвечает за игру и главное меню
+	/// </summary>
 	public partial class Form1 : Form
 	{
+		/// <summary>
+		/// элементы тела змейки
+		/// </summary>
 		private List<Circle> Snake = new List<Circle>();
-		private int score, highScore = 0;
-		private Random rand = new Random();
+		/// <summary>
+		/// очки, попытки
+		/// </summary>
+		private int score, highScore = 0, tries = 0;
+		/// <summary>
+		/// текущее направление змейки
+		/// </summary>
 		private Direction curDirection = Direction.Down;
+		/// <summary>
+		/// начата ли игра
+		/// </summary>
 		private bool isStarted = false;
 
 		public Form1()
 		{
 			InitializeComponent();
 		}
+		/// <summary>
+		/// события при нажатии кнопки старт
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void StartButton_Click(object sender, EventArgs e)
 		{
 			isStarted = true;
 			RestartGame();
 		}
+		/// <summary>
+		/// перезапуск игры
+		/// </summary>
 		private void RestartGame()
 		{
-			ChangeButtonStatus(false); // hides menu buttons
+			Field.direction = Direction.Down; 
+			curDirection = Direction.Down;
+			ChangeMenuStatus(false); // hides menu buttons
 			Field.ResetField(); 
 			ResetScore(); // sets scores 0
 			SetNewFood(); // sets new food
@@ -28,7 +52,11 @@ namespace Snake
 			GameTimer.Interval = Field.StartTickrate;
 			GameTimer.Start();
 		}
-
+		/// <summary>
+		/// отрисовка кадра
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void pictureBox1_Paint(object sender, PaintEventArgs e)
 		{
 			if (!isStarted) return;
@@ -75,7 +103,11 @@ namespace Snake
 				}
 			}
 		}
-
+		/// <summary>
+		/// изменения после тика таймера
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void GameTimer_Tick(object sender, EventArgs e)
 		{
 			switch (curDirection)
@@ -130,6 +162,11 @@ namespace Snake
 
 			pictureBox1.Invalidate();
 		}
+		/// <summary>
+		/// отлов нажатий стрелочек
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
 		private void Form1_KeyDown(object sender, KeyEventArgs e)
 		{
 			switch (e.KeyCode)
@@ -152,7 +189,9 @@ namespace Snake
 					break;
 			}
 		}
-
+		/// <summary>
+		/// поедание еды
+		/// </summary>
 		private void EatFood()
 		{
 			score++;
@@ -176,6 +215,9 @@ namespace Snake
 			}
 			SetNewFood ();
 		}
+		/// <summary>
+		/// установка новой еды на поле
+		/// </summary>
 		private void SetNewFood()
 		{
 			Point? foodPlace = Field.GetRandomFreeCell();
@@ -186,37 +228,58 @@ namespace Snake
 			}
 			Field.field[foodPlace.Value.X, foodPlace.Value.Y] = FieldObjects.Food;
 		}
+		/// <summary>
+		/// функция окончания игры
+		/// </summary>
 		private void GameOver()
 		{
+			TriesLabel.Text = "Tries: " + ++tries;
+
 			isStarted = false;
 			GameTimer.Stop();
-			ChangeButtonStatus(true);
+			ChangeMenuStatus(true);
 			ResetHighscore();
 		}
-		private void ChangeButtonStatus(bool stat)
+		/// <summary>
+		/// скрывает или отображает кнопки интерфейса
+		/// </summary>
+		/// <param name="stat">отобразить или убрать</param>
+		private void ChangeMenuStatus(bool stat)
 		{
 			StartButton.Visible		= stat;
 			SettingsButton.Visible	= stat;
 			InfoButton.Visible		= stat;
+			TriesLabel.Visible		= stat;
+			ScoreLabel.Visible		= stat;
+			BestScoreLabel.Visible	= stat;
 		}
+		/// <summary>
+		/// перезапись очков
+		/// </summary>
 		private void ResetScore()
 		{
 			score = 0;
 			ScoreLabel.Text = "Score: " + score;
 		}
+		/// <summary>
+		/// перезапись рекорда
+		/// </summary>
 		private void ResetHighscore()
 		{
 			if (score > highScore)
 			{
 				highScore = score;
 			}
-			BestScoreLabel.Text = "Best: " + highScore;
+			BestScoreLabel.Text = "Best score: " + highScore;
 		}
+		/// <summary>
+		/// создание змейки
+		/// </summary>
 		private void CreateSnake()
 		{
 			Snake.Clear(); // clears
 			//adding head
-			Snake.Add(new Circle() { position = new Point(10, 5) });
+			Snake.Add(new Circle() { position = new Point(Field.fieldWidth/2, Field.fieldHeight/2) });
 
 			//adding body
 			for (int i = 0; i < Field.StartSnakeSize; i++)
@@ -224,23 +287,29 @@ namespace Snake
 				Snake.Add(new Circle());
 			}
 		}
-
-
-		private void SettingsButton_Click(object sender, EventArgs e)
+        private void Form1_Load(object sender, EventArgs e)
         {
-			OpenSettingsMenu();
+
         }
-			
-		
-		private void InfoButton_Click(object sender, EventArgs e)
+		/// <summary>
+		/// нажатие на кнопку настроек
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+        private void SettingsButton_Click(object sender, EventArgs e)
 		{
-
-		}
-
-		private void OpenSettingsMenu()
-        {
 			Form2 f = new Form2();
 			f.ShowDialog();
-        }
+		}
+		/// <summary>
+		/// нажатие на кнопку о разработчике
+		/// </summary>
+		/// <param name="sender"></param>
+		/// <param name="e"></param>
+		private void InfoButton_Click(object sender, EventArgs e)
+		{
+			Form3 f = new Form3();
+			f.ShowDialog();
+		}
 	}
 }

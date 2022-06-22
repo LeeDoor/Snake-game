@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
+    /// <summary>
+    /// содержит набор цветов для каждого элемента игры
+    /// </summary>
     public static class Palette
     {
         public static Color SnakeBody           = Color.FromArgb(255, 63, 196, 77); // snake body

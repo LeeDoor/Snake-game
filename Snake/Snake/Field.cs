@@ -6,19 +6,55 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
+    /// <summary>
+    /// класс описывает игровое поле
+    /// </summary>
     public static class Field
     {
+        /// <summary>
+        /// ширина поля в клетках
+        /// </summary>
         public const int fieldWidth  = 35;
+        /// <summary>
+        /// высота поля в клетках
+        /// </summary>
         public const int fieldHeight = 35;
+        /// <summary>
+        /// ширина клетки в пикселях
+        /// </summary>
         public static int CellWidth { get; set; } = 20;
+        /// <summary>
+        /// высота клетки в пикселях
+        /// </summary>
         public static int CellHeight { get; set; } = 20;
+        /// <summary>
+        /// изначальный размер змейки
+        /// </summary>
         public static int StartSnakeSize { get; set; } = 4;
+        /// <summary>
+        /// изначальное время таймера
+        /// </summary>
         public static int StartTickrate { get; set; } = 150;
+        /// <summary>
+        /// на сколько ускоряется таймер после сьедения еды
+        /// </summary>
         public static int TickrateDecrease { get; set; } = 10;
+        /// <summary>
+        /// изначальная сложность. от 0 до 18
+        /// </summary>
         public static int StartComplexity { get; set; } = 0;
+        /// <summary>
+        /// текущее направление змейки
+        /// </summary>
         public static Direction direction = Direction.Left;
+        /// <summary>
+        /// поле
+        /// </summary>
         public static FieldObjects[,] field = new FieldObjects[fieldWidth, fieldHeight];
         
+        /// <summary>
+        /// пересоздает пустое поле со стенками по краям
+        /// </summary>
         public static void ResetField()
         {
             for(int i = 0; i < fieldWidth; i++)
@@ -36,6 +72,10 @@ namespace Snake
                 }
             }
         }
+        /// <summary>
+        /// переписывает значения тела змейки
+        /// </summary>
+        /// <param name="positions">список позиций змейки</param>
         public static void ResetSnakePositions(List<Point> positions)
         {
             for (int w = 0; w < fieldWidth; w++)
@@ -57,10 +97,18 @@ namespace Snake
             }
             field[positions[0].X, positions[0].Y] = FieldObjects.Head;
         }
+        /// <summary>
+        /// перегрузка метода для воспринимания массива кругов, тк информация о змее хранится как список кругов
+        /// </summary>
+        /// <param name="circles">круги</param>
         public static void ResetSnakePositions(List<Circle> circles)
         {
             Field.ResetSnakePositions(circles.Select(n => n.position).ToList());
         }
+        /// <summary>
+        /// функция для нахождения случайной свободной позиции на поле
+        /// </summary>
+        /// <returns>координаты этой позиции или null, если такой нет</returns>
         public static Point? GetRandomFreeCell()
         {
             List<Point> avaliablePoints = new List<Point>();
@@ -80,16 +128,5 @@ namespace Snake
             }
             else return null;
         }
-        public static void ClearField()
-        {
-            for(int i = 0; i < fieldWidth; i++)
-            {
-                for(int j = 0; j < fieldHeight; j++)
-                {
-                    field[i, j] = FieldObjects.Empty;
-                }
-            }
-        }
-        
     }
 }

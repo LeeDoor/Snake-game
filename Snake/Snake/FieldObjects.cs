@@ -6,12 +6,15 @@ using System.Threading.Tasks;
 
 namespace Snake
 {
+    /// <summary>
+    /// содержит перечисление возможных обьектов на поле
+    /// </summary>
     public enum FieldObjects
     {
-        Empty,
-        Body,
-        Head,
-        Wall,
-        Food
+        Empty,// пусто
+        Body, // тело змейки
+        Head, // голова змейки
+        Wall, // стена
+        Food  // еда
     }
 }
