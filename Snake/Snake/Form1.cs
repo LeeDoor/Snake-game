@@ -42,27 +42,27 @@ namespace Snake
 					switch (Field.field[w, h])
 					{
 						case FieldObjects.Empty:
-							brush = new SolidBrush(Palette.Skin);
+							brush = new SolidBrush(Palette.FieldBackground);
 							break;
 
 						case FieldObjects.Body:
-							brush = new SolidBrush(Palette.Green);
+							brush = new SolidBrush(Palette.SnakeBody);
 							break;
 
 						case FieldObjects.Head:
-							brush = new SolidBrush(Palette.Blue);
+							brush = new SolidBrush(Palette.SnakeHead);
 							break;
 
 						case FieldObjects.Food:
-							brush = new SolidBrush(Palette.Pink);
+							brush = new SolidBrush(Palette.Food);
 							break;
 
 						case FieldObjects.Wall:
-							brush = new SolidBrush(Palette.Black);
+							brush = new SolidBrush(Palette.Walls);
 							break;
 
 						default:
-							brush = new SolidBrush(Palette.Skin);
+							brush = new SolidBrush(Palette.FieldBackground);
 							break;
 					}
 
@@ -161,8 +161,19 @@ namespace Snake
 			body.position = Snake.Last().position;
 			Snake.Add(body);
 
-			GameTimer.Interval = Field.StartTickrate - score / 2 * Field.TickrateDecrease;
+			int intervalDifference = Field.StartTickrate - (score + Field.StartComplexity) / 2 * Field.TickrateDecrease;
+			if (intervalDifference < 50) intervalDifference = 50;
 
+			GameTimer.Interval = intervalDifference;
+
+			if (score % 5 == 0)
+			{
+				Point? newWallPos = Field.GetRandomFreeCell();
+				if (newWallPos != null)
+				{
+					Field.field[newWallPos.Value.X, newWallPos.Value.Y] = FieldObjects.Wall;
+				}
+			}
 			SetNewFood ();
 		}
 		private void SetNewFood()
@@ -216,12 +227,20 @@ namespace Snake
 
 
 		private void SettingsButton_Click(object sender, EventArgs e)
-		{
-
-		}
+        {
+			OpenSettingsMenu();
+        }
+			
+		
 		private void InfoButton_Click(object sender, EventArgs e)
 		{
 
 		}
+
+		private void OpenSettingsMenu()
+        {
+			Form2 f = new Form2();
+			f.ShowDialog();
+        }
 	}
 }
