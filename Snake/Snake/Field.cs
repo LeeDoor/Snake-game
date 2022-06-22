@@ -13,6 +13,8 @@ namespace Snake
         public static int CellWidth { get; set; } = 20;
         public static int CellHeight { get; set; } = 20;
         public static int StartSnakeSize { get; set; } = 4;
+        public static int StartTickrate { get; set; } = 150;
+        public static int TickrateDecrease { get; set; } = 10; 
         public static Direction direction = Direction.Left;
         public static FieldObjects[,] field = new FieldObjects[fieldWidth, fieldHeight];
         

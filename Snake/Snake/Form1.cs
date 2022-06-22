@@ -25,6 +25,7 @@ namespace Snake
 			SetNewFood(); // sets new food
 			CreateSnake(); // creates snake
 			Field.ResetSnakePositions(Snake);
+			GameTimer.Interval = Field.StartTickrate;
 			GameTimer.Start();
 		}
 
@@ -34,12 +35,12 @@ namespace Snake
 			Graphics canvas = e.Graphics;
 			Brush brush;
 			for (int w = 0; w < Field.fieldWidth; w++)
-            {
+			{
 				for(int h = 0; h < Field.fieldHeight; h++)
-                {
+				{
 
-                    switch (Field.field[w, h])
-                    {
+					switch (Field.field[w, h])
+					{
 						case FieldObjects.Empty:
 							brush = new SolidBrush(Palette.Skin);
 							break;
@@ -72,7 +73,7 @@ namespace Snake
 					Field.CellHeight
 					));
 				}
-            }
+			}
 		}
 
 		private void GameTimer_Tick(object sender, EventArgs e)
@@ -95,7 +96,7 @@ namespace Snake
 
 			for (int i = Snake.Count - 1; i > 0; i--)
 			{
-                Snake[i].position = Snake[i - 1].position;
+				Snake[i].position = Snake[i - 1].position;
 			}
 			Point newHeadPosition = new Point();
 			switch (Field.direction)
@@ -116,7 +117,7 @@ namespace Snake
 			if (Field.field[newHeadPosition.X, newHeadPosition.Y] == FieldObjects.Food)
 			{
 				EatFood();
-            }
+			}
 			else if(Field.field[newHeadPosition.X, newHeadPosition.Y] != FieldObjects.Empty)
 			{
 				GameOver();
@@ -129,8 +130,8 @@ namespace Snake
 
 			pictureBox1.Invalidate();
 		}
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
+		private void Form1_KeyDown(object sender, KeyEventArgs e)
+		{
 			switch (e.KeyCode)
 			{
 				case Keys.Left:
@@ -159,13 +160,20 @@ namespace Snake
 			Circle body = new Circle();
 			body.position = Snake.Last().position;
 			Snake.Add(body);
+
+			GameTimer.Interval = Field.StartTickrate - score / 2 * Field.TickrateDecrease;
+
 			SetNewFood ();
 		}
 		private void SetNewFood()
 		{
 			Point? foodPlace = Field.GetRandomFreeCell();
-			if (foodPlace == null) return;
-				Field.field[foodPlace.Value.X, foodPlace.Value.Y] = FieldObjects.Food;
+			if (foodPlace == null)
+			{
+				GameOver(); 
+				return;
+			}
+			Field.field[foodPlace.Value.X, foodPlace.Value.Y] = FieldObjects.Food;
 		}
 		private void GameOver()
 		{
@@ -181,12 +189,12 @@ namespace Snake
 			InfoButton.Visible		= stat;
 		}
 		private void ResetScore()
-        {
+		{
 			score = 0;
 			ScoreLabel.Text = "Score: " + score;
 		}
 		private void ResetHighscore()
-        {
+		{
 			if (score > highScore)
 			{
 				highScore = score;
